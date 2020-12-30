@@ -27,7 +27,7 @@ core_analog <- BCI / rowSums(BCI) * 100
 
 # Fortin et al. 2015 used filtered >=2%-in-2-lakes spp criteria in their analyses
 # "_red" files are those with '2/2' spp filter
-# this code is to retain only taxa that are >=2% in 2 intervals in a core
+# this code is to retain only taxa that are >=2% in 2 lakes in the training set
 N <- 2
 M <- 2
 i <- colSums(spp >= M) >= N
