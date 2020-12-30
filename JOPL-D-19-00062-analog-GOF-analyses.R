@@ -33,17 +33,18 @@ M <- 2
 i <- colSums(spp >= M) >= N
 spp_red <- spp[, i, drop = FALSE]
 # 61 chironomid taxa remain in training set
+ncol(spp_red)
 
-# "T1111_Fortin_red.csv" will be the core spp file used for GOF analysis,
-# matched to training set file "spp_red.csv"
-# this file represents "T1111_Fortin.csv" with taxa deleted to match 2/2 filtered TS2
-# i.e. "reduced" number of taxa
-### user must generate this csv file by applying 2/2 filter to TS2.csv data,
-### and matching taxa names with T1111_Fortin.csv file
-# "T1111_Fortin_red.csv" has data as % relative abundances
+#here I identify the columns that we keep based on our deletion criteria 
+#this allows us to filter the core such that we only include taxa in the model
+#the rest are deleted.
 
-coreinput_gof <- read.csv(file="T1111_Fortin_red.csv", row.names=1)
-core_gof <- coreinput_gof[,-cbind(1:2)]
+cols_to_keep <- intersect(colnames(spp_red),colnames(core_analog))
+
+core_gof <- core_analog[,cols_to_keep, drop=FALSE]
+ncol(core_gof)#should now match spp_red
+
+
 
 ### environmental data also from Polar Data Calalogue in file "...env-version3-2015.csv"
 ### env data file with E511 removed (outlier in Fortin et al. 2015) here named "env2.csv"
