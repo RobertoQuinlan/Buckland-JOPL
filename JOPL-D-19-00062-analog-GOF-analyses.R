@@ -35,9 +35,10 @@ spp_red <- spp[, i, drop = FALSE]
 # 61 chironomid taxa remain in training set
 ncol(spp_red)
 
-# this code identifies the (taxa) columns that to be kept based 2% in 2 lakes
-# deletion criteria from Fortin et al (2015); this filters the fossil core species
-# assemblage data such that only the 61 taxa in the RDA analysis in Fortin et al 2015 are retained 
+# this code identifies the columns (taxa) in the fossil assemblages that are 
+# to be retained based on the 2% in 2 lakes deletion criteria from Fortin et al (2015)
+# this filters the fossil core species assemblage data such that only the 61 taxa
+# in the RDA analysis in Fortin et al 2015 are retained 
 # for the purposes of goodness-of-fit analysis of fossil core assemblages to 1st RDA axis
 
 cols_to_keep <- intersect(colnames(spp_red),colnames(core_analog))
