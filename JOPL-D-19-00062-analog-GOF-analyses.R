@@ -57,10 +57,9 @@ chron <- cbind(coreinput_analog[,1] , coreinput_analog[,2])
 colnames(chron) <- c("Depth","Year")
 chron=as.data.frame(chron)
 
-# chronological axis for plotting goodness-of-fit results
-chron_red <- cbind(coreinput_gof[,1] , coreinput_gof[,2])
-colnames(chron_red) <- c("Depth","Year")
-chron_red=as.data.frame(chron_red)
+## chronological axis for plotting goodness-of-fit results
+### goodness-of-fit analysis uses the same intervals and chronology
+### as the analogue analysis, so use same chronology variable "chron"
 
 require("ggpalaeo")
 require("analogue")
@@ -68,7 +67,7 @@ require("ggplot2")
 
 # goodness-of-fit residuals
 rlens <- residLen(spp_red, env2$July, core_gof)
-autoplot(rlens, df = data.frame(age = as.numeric(chron_red$Year)), x_axis = "age", fill = c("azure4", "grey","white")) +
+autoplot(rlens, df = data.frame(age = as.numeric(chron$Year)), x_axis = "age", fill = c("azure4", "grey","white")) +
   labs(x = "Year", y = "Squared residual distance", fill = "Goodness of fit", categories = c("Good", "Fair", "Poor"))
 
 # analogue distance
