@@ -35,16 +35,16 @@ spp_red <- spp[, i, drop = FALSE]
 # 61 chironomid taxa remain in training set
 ncol(spp_red)
 
-#here I identify the columns that we keep based on our deletion criteria 
-#this allows us to filter the core such that we only include taxa in the model
-#the rest are deleted.
+# this code identifies the (taxa) columns that to be kept based 2% in 2 lakes
+# deletion criteria from Fortin et al (2015); this filters the fossil core species
+# assemblage data such that only the 61 taxa in the RDA analysis in Fortin et al 2015 are retained 
+# for the purposes of goodness-of-fit analysis of fossil core assemblages to 1st RDA axis
 
 cols_to_keep <- intersect(colnames(spp_red),colnames(core_analog))
 
 core_gof <- core_analog[,cols_to_keep, drop=FALSE]
-ncol(core_gof)#should now match spp_red
-
-
+ncol(core_gof)
+#should now match spp_red
 
 ### environmental data also from Polar Data Calalogue in file "...env-version3-2015.csv"
 ### env data file with E511 removed (outlier in Fortin et al. 2015) here named "env2.csv"
